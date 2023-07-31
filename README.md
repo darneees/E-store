@@ -27,7 +27,7 @@ https://fontawesome.com/
 
 ## :desktop_computer: Deployed
 
-
+https://darneees.github.io/E-store/
 
 <h3 align="center">
   
