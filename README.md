@@ -2,13 +2,13 @@
   LIGHT MODE :sunny:
 </P>
 
-![lightBanner](https://github.com/darneees/E-store/assets/79709843/bfca6a40-c284-4f97-8fa5-cdae91a42569)
+![darkBanner](https://github.com/darneees/E-store/assets/79709843/16d7c1ae-e619-4cd4-8026-038e7dfa4520)
 
 <P>
   DARK MODE :new_moon:
 </P>
 
-![darkBanner](https://github.com/darneees/E-store/assets/79709843/3145b448-2eee-43f6-886a-a51fdde7063f)
+![lightBanner](https://github.com/darneees/E-store/assets/79709843/ae2c3643-e078-4a0d-86cd-c74a91ec8133)
 
 <h1>
   E-STORE :package:
