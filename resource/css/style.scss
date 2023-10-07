@@ -1,322 +1,372 @@
-@import 'variable';
+@import "variables";
 
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 * {
-    @include reset-style();
-    font-family: 'Red Hat Display', sans-serif;
-}
-body {
-    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-main {
-    @include flexCenter(center, center, column);
-    height: 100vh;
-    position: relative;
-    background-color: $tertiaryColor;
-    z-index: 1;
+/* header style */
 
-    .content__creator {
-        position: absolute;
-        bottom: 30px; z-index: 3;
-        color: $quaternaryColor;
-        animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+nav {
+    display: flex; align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+
+    .navLogo {
+        height: 40px;
+    }
+
+    .nav-Menu {
+        list-style: none;
+        gap: 40px;
+
+        
+        li {
+            transition: transform .2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
 
         a {
             text-decoration: none;
-            color: $PrimaryColor;
-        }
-    }
+            color: $lightColor;
+            letter-spacing: 1.5px;
 
-    .wave__desktop {
-        position: absolute;
-        z-index: 2; top: 0;
-        opacity: 0.10;
-        width: 100%;
-        height: auto;
-    }
-}
-
-.card__content {
-    width: 350px;
-    height: 600px;
-    border-radius: 40px;
-    z-index: 4;
-    box-shadow: $boxShadow;
-
-    .card__image {
-        height: 35%; width: 100%;
-        overflow: hidden;  position: relative;
-        border-radius: 40px 40px 0 0;
-
-        #my__img {
-            transition: .3s;
-            cursor: pointer;
-            width: 100%; height: 100%;
+            &:hover {
+                color: $lightMode;
+                font-weight: 600;
+            }
         }
 
-        span {
-            color: $tertiaryColor;
-            position: absolute; padding: 10px;
-            top: 15px; right: 20px;
-            border: 2px solid $tertiaryColor;
-            border-radius: 50px;
-            cursor: pointer;
-            opacity: 0.3;
+        .active {
+            color: $lightMode;
+            font-weight: 600;
+            text-transform: uppercase;
         }
+
     }
 
-    .modal_container {
+    .mobile-menu-icon {
         display: none;
-        position: fixed; z-index: 5;
-        padding-top: 200px; left: 0; top: 0;
-        width: 100%; height: 100%;
-        overflow: auto; background-color: $modalBackground;
+    }
+}
 
-        .modal__content {
-            margin: auto; display: block;
-            width: 700px; animation-name: zoom;
-            border-radius: 40px; border: 10px solid $tertiaryColor;
-            animation-duration: 1s;
-        }
+header {
+    .mobile-menu {
+        display: none;
+    }
+}
 
-        .modal__close {
-            position: absolute; top: 50px; right: 100px;
-            color: $tertiaryColor; transition: 0.3s;
-            font-size: 60px; font-weight: bold;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 20px;
+}
+  
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $focusColor2;
+    transition: .4s;
+    border-radius: 34px;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 5px;
+    bottom: 2.5px;
+    background-color: $lightMode;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .slider {
+    background-color: $darkColor;
+}
+  
+input:checked + .slider:before {
+    transform: translateX(22px);
+    background-color: $darkMode;
+}
 
-            &:hover, &:focus {
-                color: $SecondaryColor;
-                text-decoration: none; cursor: pointer;
-            }
+.dark-mode {
+    display: flex; gap: 10px;
+    flex-direction: row;
+    align-items: center;
+
+    i {
+        color: $lightMode;
+    }
+}
+
+/* menu mobile*/
+
+
+/* Dark Theme */
+
+body.dark-theme {
+    background-color: $darkMode;
+    transition: 0.5s;
+}
+
+body.dark-theme .navLogo {
+    color: $darkColor;
+}
+
+body.dark-theme .nav-Menu {
+
+    a {
+        color: $darkColor;
+        opacity: 0.2;
+
+        &:hover {
+            opacity: 1;
         }
     }
 
-    .card__container {
-        @include flexCenter(center, center, column);
-        background-color: $tertiaryColor;
-        height: 65%;
-        gap: 1.3rem;
-        border-radius: 0 0 40px 40px;
+    .active {
+        color: $darkColor;
+        opacity: 1;
 
-        .card__header {
-            text-align: center;
-            animation: slide-in-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        &:hover {
+           opacity: 0.2;
+        }
+    }
+}
 
-            h2 {
-                color: $quaternaryColor;
-                font-size: 2rem;
-                font-weight: 900;
-            }
+body.dark-theme .main-container {
+    background-color: $focusColor3;
+}
 
-            p {
-                color: $SecondaryColor;
-                font-size: 1.2rem;
-                font-weight: 500;
-                padding: 0 1.4rem 0 1.4rem;
-            }
+body.dark-theme .main-container h1
+ {
+  color: $darkColor;
+}
+
+body.dark-theme .main-container .button {
+    color: $darkMode; font-weight: 700;
+    background-color: $darkColor;
+
+    &:hover {
+        background-color: $darkMode;
+        color: $lightColor;
+        cursor: pointer;
+    }
+}
+
+body.dark-theme .main-container p {
+    color: $darkColor;
+    opacity: 0.7;
+}
+
+body.dark-theme .dark-mode i {
+    color: $darkColor;
+}
+
+body.dark-theme .main-social {
+    background-color: $darkMode;
+    
+    i {
+    color: $lightColor;
+    }
+}
+
+/* section style */
+
+main {
+    width: 100%;
+    padding: 20px 40px;
+
+    .main-container {
+        background-color: $focusColor2;
+        width: 100%; height: 100%; border-radius: 50px;
+        display: flex; align-items: center;
+        justify-content: space-around;
+        position: relative;
+    }
+
+    .main-content {
+        height: 100%; width: 550px;
+        padding: 0 20px;
+        display: flex; align-items: start;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        h1 {
+            color: $lightMode; font-size: 4.8rem;
+            text-transform: uppercase; line-height: 5.5rem;
+            font-weight: 900; letter-spacing: 0.4rem;
         }
 
-        .pricing__content {
-            @include flexCenter(space-between, center, row);
-            width: 85%; height: 70px;
-            padding: 0 1.3rem 0 1.3rem;
-            border: 3px solid $quaternaryColor;
-            border-radius: 15px;
-            animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            
-
-            .pricing__value {
-                h3 {
-                    color: $quaternaryColor;
-                    font-weight: 700;
-                }
-
-                p {
-                    color: $SecondaryColor;
-                    font-weight: 500;
-                }
-            }
-
-            .pricing__group {
-                border-left: 3px solid $quaternaryColor;
-
-                p {
-                    padding: 0 0 0 1rem;
-                    color: $PrimaryColor;
-                    cursor: pointer; opacity: 0.5;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-                }
-            }
+        p {
+            font-size: 1.3rem; color: $lightMode;
+            font-weight: 300; text-indent: 15px;
         }
 
-        .card__button {
-            background-color: $quaternaryColor;
-            outline: none; border: none;
-            width: 85%; height: 70px;
-            border-radius: 15px;
-            cursor: pointer; user-select: none;
-            animation: slide-in-right 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            
-            .btn-text {
-                width: 100%;
-                color: $tertiaryColor;
-                font-size: 1rem;
-                font-weight: 700;
-            }
-            
+        .button {
+            text-decoration: none; letter-spacing: 0.1rem;
+            background-color: $lightMode; color: $darkColor;
+            padding: 20px 50px; border-radius: 25px;
+            font-weight: 600; font-size: 1.5rem;
+
             &:hover {
-                background-color: $PrimaryColor;
-                transition: .4s ease-in-out;
+                background-color: $darkColor;
+                color: $lightMode;
+                cursor: pointer;
             }
         }
-        
-        .card__cancel {
-            color: $SecondaryColor;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin: 0 0 1rem 0;
-            animation: slide-in-bottom 1.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+    }
+
+    .main-image {
+        height: 100%;
+        padding: 10px 0 0 0;
+
+        img {
+            height: 100%;
+        }
+
+    }
+
+    .main-social {
+        position: absolute; 
+        background-color: $lightMode;
+        right: -25px; bottom: 200px;
+        padding: 30px 25px; border-radius: 25px;
+        display: flex; align-items: center;
+        flex-direction: column; gap: 15px;
+        cursor: pointer; box-shadow: $shadowColor;
+
+        i {
+            color: $darkColor;
+            font-size: 1.3rem;
+            transition: transform .2s;
 
             &:hover {
-                color: $quaternaryColor;
+                transform: scale(1.3);
             }
         }
     }
 }
 
-// animation
-
-@keyframes slide-in-left {
-    0% {
-        transform: translateX(-40px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in-right {
-    0% {
-        transform: translateX(40px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in-bottom {
-    0% {
-        transform: translateY(30px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-in-top {
-    0% {
-        transform: translateY(-30px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes tracking-in-expand {
-    0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
-    }
-    40% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 1;
-    }
-}
-
-@keyframes zoom {
-    from {transform:scale(0)}
-    to {transform:scale(1)}
-}
 
 // responsive style
 
-@media (min-width: 1000px) {
+@media (max-width: 949px) {
 
-    .card__content .modal_container {
-
-        .modal__content {
-            border: 5px solid $tertiaryColor;
-            width: 800px;
-        }
-
-        .modal__close {
-            top: 50px; right: 50px;
-        }
-    } 
-}
-
-@media (min-width: 601px) and (max-width: 999px) {
-
-    .card__content .modal_container {
-
-        .modal__content {
-            border: 5px solid $tertiaryColor;
-            width: 550px;
-        }
-
-        .modal__close {
-            top: 50px; right: 50px;
-        }
-    } 
-}
-
-
-@media (min-width: 400px) and (max-width: 600px) {
-
-    .card__content .modal_container {
-
-        .modal__content {
-            border: 5px solid $tertiaryColor;
-            width: 400px;
-            border-radius: 25px;
-        }
-
-        .modal__close {
-            top: 50px; right: 50px;
-        }
-    } 
-}
-
-@media (max-width: 399px) {
-    main .content__creator {
-        bottom: 5px;
+    main {
+        height: 82.10vh;
     }
 
-    .card__content .modal_container {
+    nav .nav-Menu {
+        display: none;
+    }
+    
+    .main-container {
+        padding: 0; justify-content: center;
+        flex-direction: column;  overflow: hidden;
 
-        .modal__content {
-            border: 5px solid $tertiaryColor;
-            width: 320px;
-            border-radius: 20px;
+        .main-content {
+            width: 100%; padding: 30px 25px 0 25px;
+            justify-content: center; 
+            gap: 30px; z-index: 2;
+
+            h1 {
+                font-size: 2.5rem;
+                line-height: 3rem;
+            }
+            p {
+                font-size: 1rem;
+                text-indent: 10px;
+                width: 84%;
+            }
+            .button {
+                padding: 15px 50px; border-radius: 25px;
+                font-weight: 400; font-size: 1rem;
+                
+            }
         }
 
-        .modal__close {
-            top: 50px; right: 50px;
+        .main-image {
+            position: absolute; opacity: 0.15;
+            bottom: 0; right: 5px;
+            height: 55%; z-index: 1;
         }
-    } 
+
+        .main-social {
+            right: -20px; bottom: 180px;
+            z-index: 2; overflow: auto;
+        }
+    }
+
+}
+
+@media (min-width: 950px) {
+
+    main {
+        height: 90vh;
+    }
+
+    nav .nav-Menu {
+        display: flex; align-items: center;
+        flex-direction: row;
+    }
+    
+    .main-container {
+        padding: 0; justify-content: center;
+        flex-direction: column; 
+
+        .main-content {
+            width: 100%; padding: 30px 0 0 50px;
+            justify-content: center; 
+            gap: 30px; z-index: 1;
+
+            h1 {
+                font-size: 3.7rem; 
+                line-height: 4rem;
+            }
+            p {
+                font-size: 1rem;
+                text-indent: 10px;
+                width: 60%;
+            }
+            .button {
+                padding: 15px 40px; border-radius: 25px;
+                font-weight: 400; font-size: 1rem;
+                
+            }
+        }
+
+        .main-image {
+            position: absolute; opacity: 1;
+            bottom: 0; right: 20px;
+            height: 66%; z-index: 2;
+        }
+
+        .main-social {
+            right: -10px; bottom: 150px;
+            z-index: 2;
+        }
+    }
+
 }
